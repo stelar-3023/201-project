@@ -13,6 +13,7 @@ if (username && password) {
 document.getElementById('login-btn').addEventListener('click', function () {
   // Show the login form when the button is clicked
   document.getElementById('login-form').style.display = 'block';
+
 });
 
 // Add an event listener to the login form submission
@@ -51,4 +52,53 @@ function setStoredValue(key, value) {
   } else {
     document.cookie = `${key}=${value}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
   }
+}
+
+// constructor function Message
+function Message(name, email, subject, message) {
+  this.name = name;
+  this.email = email;
+  this.subject = subject;
+  this.message = message;
+}
+
+// send message to handle form submission
+function sendMessage(event) {
+  // prevent the default form submission
+  event.preventDefault();
+
+  // get the values from the form
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+
+  // create a new message object
+  const newMessage = new Message(name, email, subject, message);
+
+  // store the message object in local storage
+  localStorage.setItem('message', JSON.stringify(newMessage));
+
+  // display a success message
+  const confirmation = document.createElement('p');
+  confirmation.textContent = 'Your message has been sent!';
+  document.getElementById('contact-form').appendChild(confirmation);
+}
+
+// add event listener to the form submit button
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', sendMessage);
+
+// get the message object from local storage
+const storedMessage = localStorage.getItem('message');
+
+if (storedMessage) {
+  // parse the message object
+  const parsedMessage = JSON.parse(storedMessage);
+
+  // display the message object
+  document.getElementById('name').value = parsedMessage.name;
+  document.getElementById('email').value = parsedMessage.email;
+  document.getElementById('subject').value = parsedMessage.subject;
+  document.getElementById('message').value = parsedMessage.message;
 }
