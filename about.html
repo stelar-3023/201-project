@@ -23,10 +23,22 @@
           <li><a href="./">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="#" class="login-btn">Login</a></li>
+          <li><a href="#" id="login-btn">Login</a></li>
         </ul>
       </nav>
     </header>
+
+    <div id="login-form" style="display: none">
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required /><br />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required /><br />
+
+        <button id="submit-btn" type="submit">Login</button>
+      </form>
+    </div>
 
     <main id="main-about">
       <h3>About Us</h3>
