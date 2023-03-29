@@ -10,10 +10,12 @@ if (username && password) {
 }
 
 // Add an event listener to the login button
-document.getElementById('login-btn').addEventListener('click', function () {
-  // Show the login form when the button is clicked
-  document.getElementById('login-form').style.display = 'block';
-
+const loginBtn = document.getElementById('login-btn');
+loginBtn.addEventListener('click', function () {
+  // Toggle the display of the login form
+  const loginForm = document.getElementById('login-form');
+  loginForm.style.display =
+    loginForm.style.display === 'block' ? 'none' : 'block';
 });
 
 // Add an event listener to the login form submission
